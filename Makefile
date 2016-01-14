@@ -1,12 +1,12 @@
 TOP = .
 
-RELEASE_LOCAL = configure/RELEASE.local
+RELEASE_LOCAL = configure/RELEASE.local $(TOP)/../RELEASE.local
 CONFIG_SITE_LOCAL = configure/CONFIG_SITE.local
 
 AC_DIR = tools/autoconf
 DOC_DIR = documentation
 
-ifeq ($(filter $(MAKECMDGOALS),configure distclean),)
+ifeq ($(filter $(MAKECMDGOALS),configure),)
   # Command-line goal is neither configure nor distclean
 
   ifeq ($(wildcard $(RELEASE_LOCAL)),)
@@ -42,15 +42,10 @@ else
   RM ?= rm -f
   RMDIR ?= rm -rf
 
-  configure: $(AC_DIR)/configure
-	@$(RM) $(RELEASE_LOCAL) $(CONFIG_SITE_LOCAL)
-	$(AC_DIR)/configure --with-top=$(TOP)
-
-  $(AC_DIR)/configure: $(AC_DIR)/configure.ac $(wildcard $(AC_DIR)/m4/*.m4)
-	autoreconf --install $(AC_DIR)
+  configure:
+	echo "NOOP"
 
   distclean:
-	$(RM) setup.sh setup.csh $(RELEASE_LOCAL) $(CONFIG_SITE_LOCAL)
 	$(RMDIR) lib src/pvaccess/O.* $(AC_DIR)/autom4te.cache
 	$(RM) $(AC_DIR)/aclocal.m4 $(AC_DIR)/configure $(AC_DIR)/config.log
 	$(RM) $(AC_DIR)/config.status $(AC_DIR)/install-sh $(AC_DIR)/missing

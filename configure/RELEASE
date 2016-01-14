@@ -37,5 +37,6 @@
 # Base comes last:
 #EPICS_BASE = /path/to/epics/base
 
-include $(TOP)/configure/RELEASE.local
+-include $(TOP)/../RELEASE.local
+-include $(TOP)/configure/RELEASE.local
 

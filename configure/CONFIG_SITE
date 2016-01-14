@@ -48,5 +48,5 @@ CHECK_RELEASE = YES
 # The version number of the pvAccess RPC API
 #PVA_RPC_API_VERSION = 440
 
-
+-include $(TOP)/../CONFIG_SITE.local
 -include $(TOP)/configure/CONFIG_SITE.local
